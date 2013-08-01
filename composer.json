@@ -16,7 +16,7 @@
             "ephp/utility": "master"
     },
     "autoload": {
-            "psr-0": { "Ephp\\NodeBundle": "" }
+            "psr-0": { "Ephp\\ImapBundle": "" }
     },
     "target-dir": "Ephp/ImapBundle",
     "minimum-stability": "dev"
