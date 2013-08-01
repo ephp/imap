@@ -1,0 +1,23 @@
+{
+    "name": "ephp/imap",
+    "type": "symfony-bundle",
+    "description": "Funzioni per interagire via imap con la posta",
+    "keywords": ["node.js", "ephp", "symfony-2.1"],
+    "homepage": "https://github.com/ephp/Node",
+    "license": "MIT",
+    "authors": [
+            {
+                "name": "Ephraim Pepe",
+                "email": "ephraim.pepe@gmail.com"
+            }
+    ],
+    "require": {
+            "php": ">=5.3.2",
+            "ephp/utility": "master"
+    },
+    "autoload": {
+            "psr-0": { "Ephp\\NodeBundle": "" }
+    },
+    "target-dir": "Ephp/ImapBundle",
+    "minimum-stability": "dev"
+}
