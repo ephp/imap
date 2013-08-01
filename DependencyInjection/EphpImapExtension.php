@@ -22,6 +22,12 @@ class EphpImapExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $container->setParameter('ephp_imap.server', $config['server']);
+        $container->setParameter('ephp_imap.port', $config['port']);
+        $container->setParameter('ephp_imap.protocol', $config['protocol']);
+        $container->setParameter('ephp_imap.username', $config['username']);
+        $container->setParameter('ephp_imap.password', $config['password']);
+        
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
     }

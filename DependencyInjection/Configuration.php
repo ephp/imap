@@ -20,6 +20,14 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('ephp_imap');
 
+        $rootNode
+                ->children()
+                    ->scalarNode('server')->cannotBeEmpty()->end()
+                    ->scalarNode('port')->cannotBeEmpty()->end()
+                    ->scalarNode('protocol')->cannotBeEmpty()->end()
+                    ->scalarNode('username')->cannotBeEmpty()->end()
+                    ->scalarNode('password')->cannotBeEmpty()->end()
+                ;
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
