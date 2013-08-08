@@ -32,135 +32,140 @@ class Header {
     /**
      * @var integer
      *
-     * @ORM\Column(name="size", type="integer")
+     * @ORM\Column(name="size", type="integer", nullable=true)
      */
     private $size;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime")
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="message_id", type="string", length=255)
+     * @ORM\Column(name="message_id", type="string", length=255, nullable=true)
      */
     private $message_id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="to_name", type="string", length=255)
+     * @ORM\Column(name="to_name", type="string", length=255, nullable=true)
      */
     private $to_name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="to_address", type="string", length=255)
+     * @ORM\Column(name="to_address", type="string", length=255, nullable=true)
      */
     private $to_address;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="to_array_names", type="array")
+     * @ORM\Column(name="to_array_names", type="array", nullable=true)
      */
     private $to_array_names;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="to_array_addresses", type="array")
+     * @ORM\Column(name="to_array_addresses", type="array", nullable=true)
      */
     private $to_array_addresses;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="from_name", type="string", length=255)
+     * @ORM\Column(name="from_name", type="string", length=255, nullable=true)
      */
     private $from_name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="from_address", type="string", length=255)
+     * @ORM\Column(name="from_address", type="string", length=255, nullable=true)
      */
     private $from_address;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="from_array_names", type="array")
+     * @ORM\Column(name="from_array_names", type="array", nullable=true)
      */
     private $from_array_names;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="from_array_addresses", type="array")
+     * @ORM\Column(name="from_array_addresses", type="array", nullable=true)
      */
     private $from_array_addresses;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cc_name", type="string", length=255)
+     * @ORM\Column(name="cc_name", type="string", length=255, nullable=true)
      */
     private $cc_name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cc_address", type="string", length=255)
+     * @ORM\Column(name="cc_address", type="string", length=255, nullable=true)
      */
     private $cc_address;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="cc_array_names", type="array")
+     * @ORM\Column(name="cc_array_names", type="array", nullable=true)
      */
     private $cc_array_names;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="cc_array_addresses", type="array")
+     * @ORM\Column(name="cc_array_addresses", type="array", nullable=true)
      */
     private $cc_array_addresses;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bcc_name", type="string", length=255)
+     * @ORM\Column(name="bcc_name", type="string", length=255, nullable=true)
      */
     private $bcc_name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bcc_address", type="string", length=255)
+     * @ORM\Column(name="bcc_address", type="string", length=255, nullable=true)
      */
     private $bcc_address;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="bcc_array_names", type="array")
+     * @ORM\Column(name="bcc_array_names", type="array", nullable=true)
      */
     private $bcc_array_names;
 
     /**
      * @var array
      *
-     * @ORM\Column(name="bcc_array_addresses", type="array")
+     * @ORM\Column(name="bcc_array_addresses", type="array", nullable=true)
      */
     private $bcc_array_addresses;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Body", mappedBy="header", cascade={"all"})
+     */
+    private $body;
 
     /**
      * Get id
@@ -220,7 +225,7 @@ class Header {
      * @return Header
      */
     public function setDate($date) {
-        $this->date = $date;
+        $this->date = new \DateTime(date("c", strtotime($date)));
 
         return $this;
     }
@@ -630,4 +635,63 @@ class Header {
         $this->setBccArrayAddresses($bccAddresses);
     }
 
+
+    /**
+     * Set bcc_name
+     *
+     * @param string $bccName
+     * @return Header
+     */
+    public function setBccName($bccName)
+    {
+        $this->bcc_name = $bccName;
+    
+        return $this;
+    }
+
+    /**
+     * Get bcc_name
+     *
+     * @return string 
+     */
+    public function getBccName()
+    {
+        return $this->bcc_name;
+    }
+
+    /**
+     * Set bcc_address
+     *
+     * @param string $bccAddress
+     * @return Header
+     */
+    public function setBccAddress($bccAddress)
+    {
+        $this->bcc_address = $bccAddress;
+    
+        return $this;
+    }
+
+    /**
+     * Set body
+     *
+     * @param \Ephp\ImapBundle\Entity\Body $body
+     * @return Header
+     */
+    public function setBody(\Ephp\ImapBundle\Entity\Body $body = null)
+    {
+        $this->body = $body;
+    
+        return $this;
+    }
+
+    /**
+     * Get body
+     *
+     * @return \Ephp\ImapBundle\Entity\Body 
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
 }
