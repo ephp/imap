@@ -117,7 +117,7 @@ trait ImapController {
         } else {
             $parts = false;
         }
-        $i = 0;
+        $i = $j = 0;
 //        \Ephp\UtilityBundle\Utility\Debug::vd(imap_body($inbox, $mid));
         if (!$parts) { /* Simple message, only 1 piece */
             $attachs = array(); /* No attachments */
@@ -164,7 +164,7 @@ trait ImapController {
                             $attach->setFilename($parts[$i]->parameters[0]->value);
                             $attach->setData($decoded_data == false ? $filedata : $decoded_data);
                             $attach->setSize($size);
-                            $attach->setId($i);
+                            $attach->setId(++$j);
                             $attach->setType($parts[$i]->subtype);
                             $attachs[] = $attach;
                         }
